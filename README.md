@@ -75,9 +75,9 @@ $ node app.js
 
 # Author
 
-👤 **shaheryar shaikh **
 
-* Github: [@https:\/\/github.com\/shaheryarshaikh1011](https://github.com/shaheryarshaikh1011)
+
+* Github: [👤 **shaheryar shaikh **](https://github.com/shaheryarshaikh1011)
 
 ## Show your support
 
