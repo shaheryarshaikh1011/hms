@@ -58,7 +58,7 @@
 
 # Install
 
-* Download and install Nodejs
+* Download and install [NodeJS](https://nodejs.org/en/)
 * git clone https://github.com/shaheryarshaikh1011/hms in your project folder
 * To run this project, install it locally using npm:
 * Take api key from [Sendgrid](https://sendgrid.com/) for sending emails 
