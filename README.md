@@ -63,7 +63,11 @@
 
 ```
 $ npm install
+Take api key from sendgrip for sending emails https://sendgrid.com/
+create a session id in env file
+use db string to connect to db
 $ node app.js
+
 ```
 
 
