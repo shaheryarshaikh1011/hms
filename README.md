@@ -46,6 +46,7 @@
 - [Passport JS](http://www.passportjs.org/)
 - [MongoDB](https://www.mongodb.com/)
 - [Mongoose](https://mongoosejs.com/)
+- [Sendgrid](https://sendgrid.com/)
 
 
 # Features
