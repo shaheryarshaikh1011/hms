@@ -37,13 +37,16 @@
 
 # Technologies
 
-Project is created with:
-* Frontend:EJS,CSS,Bootstrap
-* Server:Node Js,Express Framework,Passport JS,Mongoose
-* Backend: MongoDB
-
 <b>Built with</b>
+
 - [NodeJS](https://nodejs.org/en/)
+- [EJS](https://ejs.co/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Express JS](https://expressjs.com/)
+- [Passport JS](http://www.passportjs.org/)
+- [MongoDB](https://www.mongodb.com/)
+- [Mongoose](https://mongoosejs.com/)
+
 
 # Features
 
