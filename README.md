@@ -79,6 +79,10 @@ $ node app.js
 
 * Github: [👤 **shaheryar shaikh **](https://github.com/shaheryarshaikh1011)
 
+## License
+
+- [MIT](https://github.com/shaheryarshaikh1011/hms/blob/master/LICENSE)
+
 ## Show your support
 
 Give a ⭐️ if this project helped you!
