@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to hospital management system  👋</h1>
+<h1 align="center">Welcome to hospital management system  <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px"></h1>
 <p>
   <a href="https://github.com/shaheryarshaikh1011/hms#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
