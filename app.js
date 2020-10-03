@@ -66,7 +66,6 @@ passport.deserializeUser(User.deserializeUser());
 //using passport local for getting currentuser details
 app.use(function(req,res,next) {
 	res.locals.currentUser=req.user;
-	console.log(req.user);
 	next();
 });
 

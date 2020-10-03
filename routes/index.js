@@ -40,7 +40,7 @@ router.post("/register",function(req,res) {
 		}
 		passport.authenticate("local")(req,res,function() {
 			// body...
-			console.log(req.user);
+			
 			res.send("you got registered");
 		});
 	});
