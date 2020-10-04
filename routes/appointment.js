@@ -6,9 +6,9 @@ var router= express.Router();
 var middleware=require("../middleware");
 
 //require Models
-var Patient=require("../models/patient"),
-     Doctor=require("../models/doctor"),
-Appointment=require("../models/appointment");
+var  Patient     =require("../models/patient"),
+     Doctor      =require("../models/doctor"),
+	 Appointment =require("../models/appointment");
 
 //require sendgrid and dotenv
 const sgMail = require('@sendgrid/mail');
@@ -18,7 +18,7 @@ require('dotenv').config();
 const key = process.env.SENDGRID_KEY;
 
 //get all appointments
-router.get("/getAppointment",function(req,res) {
+router.get("/getAppointment",middleware.isLoggedIn,function(req,res) {
 	//get all appointments from appointment model and send to appointment/show
 	Appointment.find({},function(err,allappointments) {
 		if(err)
@@ -30,14 +30,13 @@ router.get("/getAppointment",function(req,res) {
 
 			res.render("appointment/show",{appointments:allappointments});
 		}
-		// body...
 	})
 
 });
 
 
 //get add appointment form
-router.get("/addAppointment",function(req,res) {
+router.get("/addAppointment",middleware.isLoggedIn,function(req,res) {
 	//send list of doctors to appointment form frm doctor model
 	Doctor.find({},function(err,alldoctors) {
 		if(err)
@@ -48,7 +47,6 @@ router.get("/addAppointment",function(req,res) {
 		{	
 			res.render("appointment/new",{doctor:alldoctors});
 		}
-		// body...
 	})
 	
 });
@@ -67,42 +65,42 @@ router.post("/addAppointment",middleware.isLoggedIn,function(req,res) {
 
 	//before adding the appointment check whether name provided as patient name exist in patient model
 	Patient.findOne({pname:pname}, function(err,obj) {
-	 console.log(obj);
 	 //if patient doesnt exist redirect to add patient form
 	 if(!obj)
 	 {
-	 	console.log("no patient");
+	 	console.log("no patient with the name "+pname);
 	 	res.redirect("/addPatient");
 	 } 
 	 //if patient exists already
 	 else
 	 {
-	 	console.log(obj);
 	 	//Create new appointment 
 	 	Appointment.create(newAppointment,function(err,newlyAddedApp) 
 			{
-			// body...if(err)
 				if(err)
 				{
 					console.log(err);
 				}
 				else
 				{	
-					
+					//if appointment is created
 					res.redirect("/getAppointment");
-					const event = new Date(ddate);
 
-					//if appointment is created use sgmail to send confirmation email
+					//create a date type variable with name event
+					const event = new Date(ddate);
 					var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',hour:'2-digit',minute:'2-digit' };
+					//set sendgrid api key from .env file
 					sgMail.setApiKey(key);
 
-
+					//email to be sent
 					const msg = {
   									to: obj.pemail,
   									from: 'hmsofficial1011@gmail.com',
   									subject: 'Comfirmation mail',
   									text: 'your appointment with Doctor '+dname+' is confirmed for '+areason+" on "+event.toLocaleDateString("en-US",options),
 								};
+
+					//send email using sendgrid built-in send fn
 					sgMail.send(msg, (error, result) => {
     					if (error)
     					{
@@ -110,7 +108,7 @@ router.post("/addAppointment",middleware.isLoggedIn,function(req,res) {
     					}
     					else
     					{
-     				 		console.log("Email sent");
+     				 		console.log("Email sent sent to "+obj.pemail);
     					}
   					});
 				}
@@ -121,31 +119,34 @@ router.post("/addAppointment",middleware.isLoggedIn,function(req,res) {
 	 
 })
 
-router.get("/editAppointment/:id",function(req,res) {
+router.get("/editAppointment/:id",middleware.isLoggedIn,function(req,res) {
+	//find and render appointment details in the editform
 	Appointment.findById(req.params.id,function(err,foundApp) 
-	{
-				Doctor.find({},function(err,alldoctors) {
-				if(err)
+	{			//find all doctors to insert in dropdown menu
+				Doctor.find({},function(err,alldoctors) 
 				{
-				console.log(err);
-				}
-				else
-				{	
-				res.render("appointment/edit",{doctor:alldoctors,appointment:foundApp});
-				}
-		// body...
+					if(err)
+					{
+						console.log(err);
+					}
+					else
+					{	
+						res.render("appointment/edit",{doctor:alldoctors,appointment:foundApp});
+					}
+		
 				})
 			
 			
 	});
 });
 
-router.put("/editAppointment/:id",function(req,res) {
-	//find and update
+router.put("/editAppointment/:id",middleware.isLoggedIn,function(req,res) {
+	//take all data from form and insert into variables for including in email
 		var pname=req.body.appointment.pname;
 		var areason=req.body.appointment.areason;
 		var dname=req.body.appointment.dname;
 		var ddate=req.body.appointment.ddate;
+		//check whether patient exist and take his details
 		Patient.findOne({pname:pname}, function(err,obj) 
 		{
 			if(!obj)
@@ -153,7 +154,8 @@ router.put("/editAppointment/:id",function(req,res) {
 				console.log(err);
 			}
 			else
-			{	console.log("patient found")
+			{	console.log("patient successfully found!")
+				//find and update the details using id in appointments model
 				Appointment.findByIdAndUpdate(req.params.id,req.body.appointment,function(err,updatedAppointment) 
 				{
 						if(err)
@@ -162,19 +164,24 @@ router.put("/editAppointment/:id",function(req,res) {
 						}
 						else
 						{
-							console.log("appointment updated")
+							console.log("appointment successfully updated")
+							//redirect to get appointment route
 							res.redirect("/getAppointment");
+							//create a date type variable with name event
 							const event = new Date(ddate);
 							var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',hour:'2-digit',minute:'2-digit' };
+							//set sendgrid api key from .env file
 							sgMail.setApiKey(key);
 
-
+							//email to be sent
 							const msg = {
   											to: obj.pemail,
   											from: 'hmsofficial1011@gmail.com',
   											subject: 'Appointment details update Comfirmation mail',
   											text: 'your appointment is updated with Doctor '+dname+' for '+areason+' is on ' +event.toLocaleDateString("en-US",options),
 										};
+
+							//send email using sendgrid built-in fn
 							sgMail.send(msg, (error, result) => {
     							if (error)
     							{
@@ -182,7 +189,7 @@ router.put("/editAppointment/:id",function(req,res) {
     							}
     							else
     							{
-     				 				console.log("update email sent");
+     				 				console.log("update email succesfully sent");
      				 			}})
 
 						}
@@ -195,12 +202,12 @@ router.put("/editAppointment/:id",function(req,res) {
 		
 
 //delete appointment route
-router.delete("/deleteAppointment/:id",function(req,res) {
+router.delete("/deleteAppointment/:id",middleware.isLoggedIn,function(req,res) {
+	//find and delete appointment from appointment model using its id
 	Appointment.findByIdAndRemove(req.params.id,function(err) {
 		if(err)
 		{
 			res.redirect("/getAppointment");
-		// body...
 		}
 		else
 		{

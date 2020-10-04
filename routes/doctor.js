@@ -9,16 +9,18 @@ var Doctor=require("../models/doctor");
 var middleware=require("../middleware");
 
 //get doctor details
-router.get("/getDoctor",function(req,res) {
-
+router.get("/getDoctor",middleware.isLoggedIn,function(req,res) {
 	//get all doctors from doctor model and send to doctor/show
 	Doctor.find({},function(err,alldoctors) {
+		//check if doctor exist
 		if(err)
 		{
+			//show error if doesnt exist
 			console.log(err);
 		}
 		else
 		{
+			//if doctor is found then render it on doctor/show
 			res.render("doctor/show",{doctors:alldoctors});
 		}
 	})
@@ -27,6 +29,7 @@ router.get("/getDoctor",function(req,res) {
 
 //add doctor form
 router.get("/addDoctor",middleware.isLoggedIn,function(req,res) {
+	//render Add doctor form
 	res.render("doctor/new");
 })
 
@@ -41,13 +44,13 @@ router.post("/addDoctor",middleware.isLoggedIn,function(req,res) {
 
 	//add the doctors in doctor model
 	Doctor.create(newDoctor,function(err,newlyAdded) {
-		// body...if(err)
+		//if some error
 		if(err)
 		{
 			console.log(err);
 		}
 		else
-		{	
+		{	//redirect to getDoctor route
 			res.redirect("/getDoctor"); 
 		}
 	})
@@ -56,7 +59,7 @@ router.post("/addDoctor",middleware.isLoggedIn,function(req,res) {
 
 
 //edit doctor form
-router.get("/editDoctor/:id",function(req,res) {
+router.get("/editDoctor/:id",middleware.isLoggedIn,function(req,res) {
 	//find details of doctor to be edited and print on the edit form
 	Doctor.findById(req.params.id,function(err,foundDoctor) 
 	{
@@ -68,10 +71,9 @@ router.get("/editDoctor/:id",function(req,res) {
 
 
 //update route
-router.put("/editDoctor/:id",function(req,res) {
+router.put("/editDoctor/:id",middleware.isLoggedIn,function(req,res) {
 	//find and update the new details to doctor model
 	Doctor.findByIdAndUpdate(req.params.id,req.body.doctor,function(err,updatedDoctor) {
-		// body...
 		if(err)
 		{
 				console.log(err);
@@ -79,7 +81,6 @@ router.put("/editDoctor/:id",function(req,res) {
 		}
 		else
 		{
-			console.log(req.body.doctor);
 			res.redirect("/getDoctor");
 		}
 	})
@@ -87,13 +88,12 @@ router.put("/editDoctor/:id",function(req,res) {
 });
 
 //delete route
-router.delete("/deleteDoctor/:id",function(req,res) {
+router.delete("/deleteDoctor/:id",middleware.isLoggedIn,function(req,res) {
 	//find the remove the specified doctor and his details
 	Doctor.findByIdAndRemove(req.params.id,function(err) {
 		if(err)
 		{
 			res.redirect("/getDoctor");
-		// body...
 		}
 		else
 		{

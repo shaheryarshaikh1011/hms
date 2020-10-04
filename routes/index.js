@@ -30,16 +30,16 @@ router.get("/register",function(req,res) {
 
 //registeration post route
 router.post("/register",function(req,res) {
+	//take new user details from add user form
 	var newUser = new User({username:req.body.username});
+	//register the new user using passport js
 	User.register(newUser,req.body.password,function(err,user) {
-		// body...
 		if(err)
 		{
 			console.log(err);
 			return res.render("register");
 		}
 		passport.authenticate("local")(req,res,function() {
-			// body...
 			
 			res.send("you got registered");
 		});
@@ -55,7 +55,6 @@ router.post("/register",function(req,res) {
 
 //show login form
 router.get("/login",function(req,res) {
-	// body...
 	res.render("login");
 });
 
@@ -65,7 +64,7 @@ router.post("/login",passport.authenticate("local",
 		successRedirect:"/panel",
 	 	failureRedirect:"/login"
 	 }),function(req,res) {
-	// body...
+
 
 	
 });
