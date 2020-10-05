@@ -47,6 +47,8 @@
 - [MongoDB](https://www.mongodb.com/)
 - [Mongoose](https://mongoosejs.com/)
 - [Sendgrid](https://sendgrid.com/)
+- [ChartJS](https://www.chartjs.org/)
+
 
 
 # Features
