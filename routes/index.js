@@ -5,9 +5,16 @@ var passport=require("passport");
 
 //require models
 var User    =require("../models/user");
+var Doctor=require("../models/doctor");
+var Patient=require("../models/patient");
 
 //require middleware
 var middleware=require("../middleware");
+
+
+//variables
+var DocCount;
+var PatCount;
 
 //landing page
 router.get("/",function(req,res) {
@@ -17,7 +24,28 @@ router.get("/",function(req,res) {
 
 //panel page
 router.get("/panel",middleware.isLoggedIn,function(req,res) {
-	res.render("panel",{user:req.user.username});
+	Doctor.countDocuments(function (err, count) { 
+    if (err){ 
+        console.log(err) 
+    }
+    else
+    { 
+        DocCount=count;
+        console.log("no of dr "+DocCount);
+        Patient.countDocuments(function (err, Patcount) { 
+    	if (err){ 
+        			console.log(err) 
+    			}
+    		else{ 
+        			PatCount=Patcount;
+        			console.log("no of pat "+PatCount);
+        			res.render("panel",{user:req.user.username,DocCount:DocCount,PatCount:PatCount});
+    			} 
+		}); 
+    } 
+	});
+	
+	
 	
 })
 
