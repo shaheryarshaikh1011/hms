@@ -3,16 +3,19 @@
 <div class="container">
 	<div class="row">
 		<h1 style="text-align:center">Add New Doctor</h1>
-		<div style="width:30% ;margin:25px auto ">
-
+		<div style="width:40% ;margin:25px auto " >
+			<div class="well">
 			<form action="addDoctor" method="POST">
 			<div class="form-group">
-				<input class="form-control" type="text" placeholder="enter name" name="dname">
+				<label>Enter Doctor Name</label>
+				<input class="form-control" type="text" placeholder="enter name" name="dname" >
 			</div>
 			<div class="form-group">
+				<label>Enter Doctor Age</label>
 				<input class="form-control" type="number" placeholder="enter Age" name="age" step="1">
 			</div>
 			<div class="form-group">
+				<label>Enter Doctor department</label>
 				<input class="form-control" type="text" placeholder="enter Specialization" name="spec">
 			</div>
 			<div class="form-group">
@@ -23,7 +26,8 @@
 				
 	
 			</form>
-			<a href="/getDoctor">Go back!</a>
+			</div>
+			<a class="btn btn-warning btn-lg" href="/getDoctor">Go back!</a>
 		</div>
 
 

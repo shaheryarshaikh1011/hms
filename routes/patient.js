@@ -51,6 +51,7 @@ router.post("/addPatient",middleware.isLoggedIn,function(req,res) {
 		}
 		else
 		{	
+			req.flash("success","Patient successfully added");
 			res.redirect("/getPatient");
 		}
 	})
@@ -78,6 +79,7 @@ router.put("/editPatient/:id",middleware.isLoggedIn,function(req,res) {
 		}
 		else
 		{
+			req.flash("success","Patient Details updated");
 			res.redirect("/getPatient");
 		}
 	})
@@ -93,6 +95,7 @@ router.delete("/deletePatient/:id",middleware.isLoggedIn,function(req,res) {
 		}
 		else
 		{
+			req.flash("success","Patient Details deleted");
 			res.redirect("/getPatient");
 		}
 	})

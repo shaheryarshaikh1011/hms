@@ -51,6 +51,7 @@ router.post("/addDoctor",middleware.isLoggedIn,function(req,res) {
 		}
 		else
 		{	//redirect to getDoctor route
+			req.flash("success","Doctor Details Added");
 			res.redirect("/getDoctor"); 
 		}
 	})
@@ -77,10 +78,12 @@ router.put("/editDoctor/:id",middleware.isLoggedIn,function(req,res) {
 		if(err)
 		{
 				console.log(err);
+				req.flash("error",err);
 
 		}
 		else
 		{
+			req.flash("success","Doctor Details updated");
 			res.redirect("/getDoctor");
 		}
 	})
@@ -97,6 +100,7 @@ router.delete("/deleteDoctor/:id",middleware.isLoggedIn,function(req,res) {
 		}
 		else
 		{
+			req.flash("success","Doctor Deleted successfully");
 			res.redirect("/getDoctor");
 		}
 	})

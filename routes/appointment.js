@@ -45,6 +45,7 @@ router.get("/addAppointment",middleware.isLoggedIn,function(req,res) {
 		}
 		else
 		{	
+
 			res.render("appointment/new",{doctor:alldoctors});
 		}
 	})
@@ -68,8 +69,9 @@ router.post("/addAppointment",middleware.isLoggedIn,function(req,res) {
 	 //if patient doesnt exist redirect to add patient form
 	 if(!obj)
 	 {
-	 	console.log("no patient with the name "+pname);
+	 	req.flash("error","No patient with the name "+pname+",add the patient first");
 	 	res.redirect("/addPatient");
+
 	 } 
 	 //if patient exists already
 	 else
@@ -84,6 +86,7 @@ router.post("/addAppointment",middleware.isLoggedIn,function(req,res) {
 				else
 				{	
 					//if appointment is created
+					req.flash("success","Appointment Details added");
 					res.redirect("/getAppointment");
 
 					//create a date type variable with name event
@@ -104,6 +107,7 @@ router.post("/addAppointment",middleware.isLoggedIn,function(req,res) {
 					sgMail.send(msg, (error, result) => {
     					if (error)
     					{
+
       						console.log(error);
     					}
     					else
@@ -166,6 +170,7 @@ router.put("/editAppointment/:id",middleware.isLoggedIn,function(req,res) {
 						{
 							console.log("appointment successfully updated")
 							//redirect to get appointment route
+							req.flash("success","Appointment Details updated");
 							res.redirect("/getAppointment");
 							//create a date type variable with name event
 							const event = new Date(ddate);
@@ -211,6 +216,7 @@ router.delete("/deleteAppointment/:id",middleware.isLoggedIn,function(req,res) {
 		}
 		else
 		{
+			req.flash("success","Appointment Details deleted");
 			res.redirect("/getAppointment");
 
 		}

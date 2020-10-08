@@ -3,22 +3,32 @@
 <div class="container">
 	<div class="row">
 		<h1 style="text-align:center">Edit Patient <%=patient.pname%></h1>
-		<div style="width:30% ;margin:25px auto ">
-
+		<div style="width:40% ;margin:25px auto ">
+			<div class="well">
 			<form action="/editPatient/<%=patient._id%>?_method=PUT" method="POST">
 			<div class="form-group">
+				<label >Enter Patient's Fullname</label>
 				<input class="form-control" type="text" value="<%=patient.pname%>" name="patient[pname]">
 			</div>
 			<div class="form-group">
+				<label >Enter Age</label>
 				<input class="form-control" type="number" value="<%=patient.page%>" name="patient[page]" step="1">
 			</div>
 			<div class="form-group">
-				<input class="form-control" type="text" value="<%=patient.pgender%>" name="patient[pgender]">
+			<label>Select Gender</label>
+				<select class="form-control" name="patient[pgender]" id="pgender">
+					
+  						<option value="M">Male</option>
+  						<option value="F">Female</option>
+  					
+				</select>
 			</div>
 			<div class="form-group">
+				<label>Enter Email Address</label>
 				<input class="form-control" type="email" value="<%=patient.pemail%>" name="patient[pemail]">
 			</div>
 			<div class="form-group">
+			<label>Enter Residential Address</label>
 				<input class="form-control" type="text" value="<%=patient.paddr%>" name="patient[paddr]">
 			</div>
 			<div class="form-group">
@@ -29,7 +39,8 @@
 				
 	
 			</form>
-			<a href="/getPatient">Go back!</a>
+			</div>
+			<a class="btn btn-warning btn-lg" href="/getPatient">Go back!</a>
 		</div>
 
 

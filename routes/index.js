@@ -7,6 +7,7 @@ var passport=require("passport");
 var User    =require("../models/user");
 var Doctor=require("../models/doctor");
 var Patient=require("../models/patient");
+var Appointment =require("../models/appointment");
 
 //require middleware
 var middleware=require("../middleware");
@@ -22,8 +23,10 @@ router.get("/",function(req,res) {
 	res.redirect("/login");
 });
 
+var DocName;
 //panel page
 router.get("/panel",middleware.isLoggedIn,function(req,res) {
+	
 	Doctor.countDocuments(function (err, count) { 
     if (err){ 
         console.log(err) 
@@ -39,11 +42,19 @@ router.get("/panel",middleware.isLoggedIn,function(req,res) {
     		else{ 
         			PatCount=Patcount;
         			console.log("no of pat "+PatCount);
-        			res.render("panel",{user:req.user.username,DocCount:DocCount,PatCount:PatCount});
+        			Doctor.find({}).distinct('dname', function(err, obj) {
+    						//do something with room_types
+    						DocName=obj;
+    						console.log(DocName);
+    						res.render("panel",{user:req.user.username,DocCount:DocCount,PatCount:PatCount,DocName:DocName});
+						});
+        			
+        			
     			} 
 		}); 
     } 
 	});
+	
 	
 	
 	
@@ -64,12 +75,13 @@ router.post("/register",function(req,res) {
 	User.register(newUser,req.body.password,function(err,user) {
 		if(err)
 		{
-			console.log(err);
-			return res.render("register");
+			
+			return res.render("register",{"error": err.message});
+			req.flash("error",+err.message);
 		}
 		passport.authenticate("local")(req,res,function() {
-			
-			res.send("you got registered");
+			req.flash("success","Welcome "+user.username);
+			res.redirect("/panel");
 		});
 	});
 });
@@ -83,6 +95,7 @@ router.post("/register",function(req,res) {
 
 //show login form
 router.get("/login",function(req,res) {
+
 	res.render("login");
 });
 
@@ -92,7 +105,7 @@ router.post("/login",passport.authenticate("local",
 		successRedirect:"/panel",
 	 	failureRedirect:"/login"
 	 }),function(req,res) {
-
+	 
 
 	
 });
@@ -101,6 +114,7 @@ router.post("/login",passport.authenticate("local",
 //logout route
 router.get("/logout",function(req,res) {
 	req.logout();
+	req.flash("success","Logged you out");
 	res.redirect("/login");
 });
 

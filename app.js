@@ -6,8 +6,8 @@ var express 	   = require("express"),
     passport       =require("passport"),
     LocalStrategy  =require("passport-local"),
     sgMail         =require('@sendgrid/mail'),
-    methodOverride =require("method-override");
-
+    methodOverride =require("method-override"),
+    flash          =require("connect-flash");
 //models 
 var User        =require("./models/user"),
     Doctor      =require("./models/doctor"),
@@ -46,6 +46,9 @@ mongoose.connect(process.env.localDB,function(err) {
 	// body...
 });
 
+app.use(flash());
+
+
 //use body parser to get value from ejs forms
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -72,6 +75,8 @@ passport.deserializeUser(User.deserializeUser());
 //using passport local for getting currentuser details
 app.use(function(req,res,next) {
 	res.locals.currentUser=req.user;
+	res.locals.error=req.flash("error");
+	res.locals.success=req.flash("success");
 	next();
 });
 
