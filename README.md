@@ -56,13 +56,15 @@
 * Patient recieves email after appointment confirmation
 * Admin and user panel are independent
 * authentication by Passport js
-
+* Now you can create multiple Users
+* Reponsive UI supports Mobile Phone Resolutions
+* chart On panel Page shows Doctor/Patient Ratio
 
 # Install
 
 * Download and install [NodeJS](https://nodejs.org/en/)
 * git clone https://github.com/shaheryarshaikh1011/hms in your project folder
-* To run this project, install it locally using npm:
+* To run this project, install all dependencies using npm install:
 * Take api key from [Sendgrid](https://sendgrid.com/) for sending emails 
 * create a session id in env file
 * use db string to connect to db
@@ -71,7 +73,6 @@
 ```
 $ npm install
 $ node app.js
-
 ```
 
 
@@ -81,10 +82,6 @@ $ node app.js
 
 
 * Github: [👤 **shaheryar shaikh **](https://github.com/shaheryarshaikh1011)
-
-## License
-
-- [MIT](https://github.com/shaheryarshaikh1011/hms/blob/master/LICENSE)
 
 ## Show your support
 
