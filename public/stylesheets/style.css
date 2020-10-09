@@ -74,6 +74,17 @@ body {
   text-align: center;
 }
 
+#flash
+{
+  z-index: 1; 
+  position: relative;
+  text-align: center;
+}
+
+.aredirect
+{
+ padding-bottom: 5%;
+}
 
 
 .slideshow { 
