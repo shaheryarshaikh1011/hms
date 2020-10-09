@@ -62,7 +62,7 @@
 
 * Download and install [NodeJS](https://nodejs.org/en/)
 * git clone https://github.com/shaheryarshaikh1011/hms in your project folder
-* To run this project, install it locally using npm:
+* To run this project, install all dependencies using npm install:
 * Take api key from [Sendgrid](https://sendgrid.com/) for sending emails 
 * create a session id in env file
 * use db string to connect to db
@@ -71,7 +71,6 @@
 ```
 $ npm install
 $ node app.js
-
 ```
 
 
