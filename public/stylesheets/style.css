@@ -39,7 +39,6 @@ body {
 }
 .form-group::before {
 	font-family: 'Font Awesome\ 5 Free';
-	content: "\f1fa";
 	position: absolute;
 	font-size: 22px;
 	left: 28px;
@@ -47,7 +46,7 @@ body {
 	color: #555e60;
 }
 .form-group:last-of-type::before {
-	content: "\f023";
+	
 }
 .form-input button {
 	width: 40%;
