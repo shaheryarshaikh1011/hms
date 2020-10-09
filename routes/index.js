@@ -4,18 +4,19 @@ var router= express.Router();
 var passport=require("passport");
 
 //require models
-var User    =require("../models/user");
-var Doctor=require("../models/doctor");
-var Patient=require("../models/patient");
-var Appointment =require("../models/appointment");
+ var User        =require("../models/user"),
+     Doctor      =require("../models/doctor"),
+     Patient     =require("../models/patient"),
+     Appointment =require("../models/appointment");
 
 //require middleware
 var middleware=require("../middleware");
 
 
 //variables
-var DocCount;
-var PatCount;
+var DocCount,
+    PatCount,
+    DocName;
 
 //landing page
 router.get("/",function(req,res) {
@@ -23,7 +24,7 @@ router.get("/",function(req,res) {
 	res.redirect("/login");
 });
 
-var DocName;
+
 //panel page
 router.get("/panel",middleware.isLoggedIn,function(req,res) {
 	

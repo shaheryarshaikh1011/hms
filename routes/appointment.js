@@ -60,7 +60,7 @@ router.post("/addAppointment",middleware.isLoggedIn,function(req,res) {
 	var pname=req.body.pname;
 	var areason=req.body.reason;
 	var dname=req.body.dname;
-	var ddate=req.body.ddate
+	var ddate=req.body.ddate;
 	
 	var newAppointment={pname:pname,areason:areason,dname:dname,ddate:ddate};
 
