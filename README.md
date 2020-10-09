@@ -58,7 +58,7 @@
 * authentication by Passport js
 * Now you can create multiple Users
 * Reponsive UI supports Mobile Phone Resolutions
-* Zingchart On panel Page shows Doctor/Patient Ratio
+* chart On panel Page shows Doctor/Patient Ratio
 
 # Install
 
