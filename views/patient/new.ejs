@@ -8,11 +8,11 @@
 			<form action="addPatient" method="POST">
 			<div class="form-group">
 				<label >Enter Patient's Fullname</label>
-				<input class="form-control" type="text" placeholder="enter name" name="pname">
+				<input class="form-control" type="text" placeholder="enter name" name="pname" required>
 			</div>
 			<div class="form-group">
 				<label >Enter Age</label>
-				<input class="form-control" type="number" placeholder="enter Age" name="page" step="1">
+				<input class="form-control" type="number" placeholder="enter Age" name="page" step="1" min=0 oninput="validity.valid||(value='');" required>
 			</div>
 			<div class="form-group">
 				<label >Select Gender</label>
@@ -25,12 +25,12 @@
 			</div>
 			<div class="form-group">
 				<label >Enter Email Address</label>
-				<input class="form-control" type="email" placeholder="enter Email" name="email">
+				<input class="form-control" type="email" placeholder="enter Email" name="email" required>
 			</div>
 			
 			<div class="form-group">
 				<label >Enter Residential Address</label>
-				<input class="form-control" type="text" placeholder="enter Address" name="paddr">
+				<input class="form-control" type="text" placeholder="enter Address" name="paddr" required>
 			</div>
 			<div class="form-group">
 				<button class="btn btn-lg btn-primary btn-block">submit</button>

@@ -8,15 +8,15 @@
 			<form action="/editDoctor/<%=doctor._id%>?_method=PUT" method="POST">
 			<div class="form-group">
 				<label>Enter Doctor Name</label>
-				<input class="form-control" type="text" value="<%=doctor.dname%>" name="doctor[dname]">
+				<input class="form-control" type="text" value="<%=doctor.dname%>" name="doctor[dname]" required>
 			</div>
 			<div class="form-group">
 				<label>Enter Doctor Age</label>
-				<input class="form-control" type="number" value="<%=doctor.dage%>" name="doctor[dage]" step="1">
+				<input class="form-control" type="number" value="<%=doctor.dage%>" name="doctor[dage]" step="1" min=0 oninput="validity.valid||(value='');" required>
 			</div>
 			<div class="form-group">
 				<label>Enter Doctor's Department</label>
-				<input class="form-control" type="text" value="<%=doctor.specialization%>" name="doctor[specialization]">
+				<input class="form-control" type="text" value="<%=doctor.specialization%>" name="doctor[specialization]" required>
 			</div>
 			<div class="form-group">
 				<button class="btn btn-lg btn-primary btn-block">submit</button>
