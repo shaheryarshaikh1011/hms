@@ -8,6 +8,7 @@ var express 	   = require("express"),
     sgMail         =require('@sendgrid/mail'),
     methodOverride =require("method-override"),
     flash          =require("connect-flash");
+    
 //models 
 var User        =require("./models/user"),
     Doctor      =require("./models/doctor"),
@@ -68,6 +69,7 @@ app.use(require("express-session")({
 //Passport configuration
 app.use(passport.initialize());
 app.use(passport.session());
+//local strategy
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
