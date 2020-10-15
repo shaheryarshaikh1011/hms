@@ -3,7 +3,7 @@
 	<div class="jumbotron">
   		<div class="container">
   			<h1 style="text-align:center;">Patients</h1>
-  			<%if(currentUser.username!=="ad"){%>
+  			<%if(currentUser.username!=="admin"){%>
   			<a class="btn btn-success btn-lg" href="/addPatient">Add Patient</a>
   			<%}%>
 		</div>
@@ -30,7 +30,7 @@
 	<td><%=patient.pgender%></td>
 	<td><%=patient.paddr%></td>
 	<td>
-	<%if(currentUser.username!=="ad"){%>
+	<%if(currentUser.username!=="admin"){%>
 	<a class="btn btn-md btn-warning" href="/editPatient/<%=patient._id%>">Edit</a>
 	</td>
 	<td>

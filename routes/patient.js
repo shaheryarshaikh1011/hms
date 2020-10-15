@@ -29,12 +29,12 @@ router.get("/getPatient",middleware.isLoggedIn,function(req,res) {
 
 
 //add patient form
-router.get("/addPatient",middleware.isLoggedIn,function(req,res) {
+router.get("/addPatient",middleware.isLoggedIn,middleware.isItUser,function(req,res) {
 	res.render("patient/new");
 })
 
 //add patient post route
-router.post("/addPatient",middleware.isLoggedIn,function(req,res) {
+router.post("/addPatient",middleware.isLoggedIn,middleware.isItUser,function(req,res) {
 	//get data from the form and add in the obj
 	var pname=req.body.pname;
 	var page=req.body.page;
@@ -58,7 +58,7 @@ router.post("/addPatient",middleware.isLoggedIn,function(req,res) {
 })
 
 //edit patient details form
-router.get("/editPatient/:id",middleware.isLoggedIn,function(req,res) {
+router.get("/editPatient/:id",middleware.isLoggedIn,middleware.isItUser,function(req,res) {
 	//find details of patient to be edited and print on the edit form
 	Patient.findById(req.params.id,function(err,foundPatient) 
 	{
@@ -69,7 +69,7 @@ router.get("/editPatient/:id",middleware.isLoggedIn,function(req,res) {
 })
 
 //update route
-router.put("/editPatient/:id",middleware.isLoggedIn,function(req,res) {
+router.put("/editPatient/:id",middleware.isLoggedIn,middleware.isItUser,function(req,res) {
 	//find and update the new details to patients model
 	Patient.findByIdAndUpdate(req.params.id,req.body.patient,function(err,updatedPatient) {
 		if(err)
@@ -86,7 +86,7 @@ router.put("/editPatient/:id",middleware.isLoggedIn,function(req,res) {
 });
 
 //delete route
-router.delete("/deletePatient/:id",middleware.isLoggedIn,function(req,res) {
+router.delete("/deletePatient/:id",middleware.isLoggedIn,middleware.isItUser,function(req,res) {
 	//find and delete the details from patients model
 	Patient.findByIdAndRemove(req.params.id,function(err) {
 		if(err)

@@ -36,7 +36,7 @@ router.get("/getAppointment",middleware.isLoggedIn,function(req,res) {
 
 
 //get add appointment form
-router.get("/addAppointment",middleware.isLoggedIn,function(req,res) {
+router.get("/addAppointment",middleware.isLoggedIn,middleware.isItUser,function(req,res) {
 	//send list of doctors to appointment form frm doctor model
 	Doctor.find({},function(err,alldoctors) {
 		if(err)
@@ -54,7 +54,7 @@ router.get("/addAppointment",middleware.isLoggedIn,function(req,res) {
 
 
 //appointment post route
-router.post("/addAppointment",middleware.isLoggedIn,function(req,res) {
+router.post("/addAppointment",middleware.isLoggedIn,middleware.isItUser,function(req,res) {
 
 	//get data from the form and add in the obj
 	var pname=req.body.pname;
@@ -123,7 +123,7 @@ router.post("/addAppointment",middleware.isLoggedIn,function(req,res) {
 	 
 })
 
-router.get("/editAppointment/:id",middleware.isLoggedIn,function(req,res) {
+router.get("/editAppointment/:id",middleware.isLoggedIn,middleware.isItUser,function(req,res) {
 	//find and render appointment details in the editform
 	Appointment.findById(req.params.id,function(err,foundApp) 
 	{			//find all doctors to insert in dropdown menu
@@ -144,7 +144,7 @@ router.get("/editAppointment/:id",middleware.isLoggedIn,function(req,res) {
 	});
 });
 
-router.put("/editAppointment/:id",middleware.isLoggedIn,function(req,res) {
+router.put("/editAppointment/:id",middleware.isLoggedIn,middleware.isItUser,function(req,res) {
 	//take all data from form and insert into variables for including in email
 		var pname=req.body.appointment.pname;
 		var areason=req.body.appointment.areason;
@@ -207,7 +207,7 @@ router.put("/editAppointment/:id",middleware.isLoggedIn,function(req,res) {
 		
 
 //delete appointment route
-router.delete("/deleteAppointment/:id",middleware.isLoggedIn,function(req,res) {
+router.delete("/deleteAppointment/:id",middleware.isLoggedIn,middleware.isItUser,function(req,res) {
 	//find and delete appointment from appointment model using its id
 	Appointment.findByIdAndRemove(req.params.id,function(err) {
 		if(err)

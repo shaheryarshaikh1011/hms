@@ -9,3 +9,23 @@ middlewareObj.isLoggedIn=function(req,res,next){
 };
 
 module.exports=middlewareObj;
+
+
+middlewareObj.isItUser=function(req,res,next){
+	console.log(req.user.username);
+	if(req.user.username!=="admin")
+	{
+		return next();
+		
+	}
+	res.redirect("/panel");
+}
+
+middlewareObj.isItAdmin=function(req,res,next){
+	console.log(req.user.username);
+	if(req.user.username=="admin")
+	{
+		return next();
+	}
+	res.redirect("/panel");
+}

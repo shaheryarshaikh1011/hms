@@ -28,14 +28,14 @@ router.get("/getDoctor",middleware.isLoggedIn,function(req,res) {
 });
 
 //add doctor form
-router.get("/addDoctor",middleware.isLoggedIn,function(req,res) {
+router.get("/addDoctor",middleware.isLoggedIn,middleware.isItAdmin,function(req,res) {
 	//render Add doctor form
 	res.render("doctor/new");
 })
 
 
 //add doctor post route
-router.post("/addDoctor",middleware.isLoggedIn,function(req,res) {
+router.post("/addDoctor",middleware.isLoggedIn,middleware.isItAdmin,function(req,res) {
 	//get data from the form and add in the obj
 	var dname=req.body.dname;
 	var dage=req.body.age;
@@ -60,7 +60,7 @@ router.post("/addDoctor",middleware.isLoggedIn,function(req,res) {
 
 
 //edit doctor form
-router.get("/editDoctor/:id",middleware.isLoggedIn,function(req,res) {
+router.get("/editDoctor/:id",middleware.isLoggedIn,middleware.isItAdmin,function(req,res) {
 	//find details of doctor to be edited and print on the edit form
 	Doctor.findById(req.params.id,function(err,foundDoctor) 
 	{
@@ -72,7 +72,7 @@ router.get("/editDoctor/:id",middleware.isLoggedIn,function(req,res) {
 
 
 //update route
-router.put("/editDoctor/:id",middleware.isLoggedIn,function(req,res) {
+router.put("/editDoctor/:id",middleware.isLoggedIn,middleware.isItAdmin,function(req,res) {
 	//find and update the new details to doctor model
 	Doctor.findByIdAndUpdate(req.params.id,req.body.doctor,function(err,updatedDoctor) {
 		if(err)
@@ -91,7 +91,7 @@ router.put("/editDoctor/:id",middleware.isLoggedIn,function(req,res) {
 });
 
 //delete route
-router.delete("/deleteDoctor/:id",middleware.isLoggedIn,function(req,res) {
+router.delete("/deleteDoctor/:id",middleware.isLoggedIn,middleware.isItAdmin,function(req,res) {
 	//find the remove the specified doctor and his details
 	Doctor.findByIdAndRemove(req.params.id,function(err) {
 		if(err)

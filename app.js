@@ -33,7 +33,7 @@ app.use(methodOverride("_method"));
 //mongoose configuration
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect(process.env.localDB,function(err) {
+mongoose.connect(process.env.CloudDB,function(err) {
 	if(err)
 	{
 		//if connection fails
@@ -41,7 +41,7 @@ mongoose.connect(process.env.localDB,function(err) {
 	}
 	else
 	{
-		console.log("we are connected to "+process.env.localDB);
+		console.log("we are connected to "+process.env.CloudDB);
 	}
 	// body...
 });
