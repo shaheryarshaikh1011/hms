@@ -84,7 +84,10 @@ body {
 {
  padding-bottom: 5%;
 }
-
+.goback
+{
+ padding-bottom: 5%;
+}
 
 .slideshow { 
   position: fixed;
