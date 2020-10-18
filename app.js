@@ -91,6 +91,9 @@ app.use(indexRoutes);
 app.use(docRoutes);
 app.use(patRoutes);
 app.use(appointRoutes);
+app.get('*', function (req, res) { 
+    res.redirect("/panel"); 
+}) 
 
 
 
