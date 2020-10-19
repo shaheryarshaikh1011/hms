@@ -1,11 +1,19 @@
-<%- include('../partials/header'); -%>
+<%- include('../partials/formpartial'); -%>
 
-<div class="container">
-	<div class="row">
-		<h1 style="text-align:center">Edit Appointment</h1>
-		<div style="width:40% ;margin:25px auto ">
-			<div class="well">
-			<form action="/editAppointment/<%=appointment._id%>?_method=PUT" method="POST">
+
+
+
+
+<div class="modal-dialog text-center form-page">
+    <div class="col-sm-9 main-section">
+    <h1>Add new doctor</h1>
+      <div class="modal-content">
+          <div class="col-12">
+          <h1></h1>
+        </div>
+
+        <div class="col-12 form-input">
+         		<form action="/editAppointment/<%=appointment._id%>?_method=PUT" method="POST">
 			<div class="form-group">
 				<label>Enter Patient's Fullname</label>
 				<input class="form-control" type="text" value="<%=appointment.pname%>"" name="appointment[pname]" size="20" required>
@@ -32,23 +40,24 @@
 			
 			
 			
-			<div class="form-group">
-				<button class="btn btn-lg btn-primary btn-block">submit</button>
-			</div>
-
+			<button type="submit" class="btn btn-success">submit</button>
+            <div class="goback">
+            <a class="btn btn-warning btn-lg" href="/getAppointment">Go back!</a>
+            </div>
 				
 				
 				
 	
 			</form>
-			</div>
-			<a class="btn btn-warning btn-lg" href="/getAppointment">Go back!</a>
-		</div>
 
+        </div>
 
-	</div>
+   
 
+      </div>
+    </div>
 </div>
+
 
 
 

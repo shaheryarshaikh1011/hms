@@ -100,7 +100,7 @@ router.post("/addAppointment",middleware.isLoggedIn,middleware.isItUser,function
   									to: obj.pemail,
   									from: 'hmsofficial1011@gmail.com',
   									subject: 'Comfirmation mail',
-  									text: 'your appointment with Doctor '+dname+' is confirmed for '+areason+" on "+event.toLocaleDateString("en-US",options),
+  									text: 'HI '+obj.pname+' your appointment with Doctor Mr.'+dname+' is confirmed for '+areason+" on "+event.toLocaleDateString("en-US",options),
 								};
 
 					//send email using sendgrid built-in send fn
@@ -183,7 +183,7 @@ router.put("/editAppointment/:id",middleware.isLoggedIn,middleware.isItUser,func
   											to: obj.pemail,
   											from: 'hmsofficial1011@gmail.com',
   											subject: 'Appointment details update Comfirmation mail',
-  											text: 'your appointment is updated with Doctor '+dname+' for '+areason+' is on ' +event.toLocaleDateString("en-US",options),
+  											text: 'HI '+obj.pname+' your updated appointment with Doctor Mr.'+dname+' for '+areason+' is on ' +event.toLocaleDateString("en-US",options),
 										};
 
 							//send email using sendgrid built-in fn
