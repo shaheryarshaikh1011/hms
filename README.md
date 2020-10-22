@@ -74,7 +74,13 @@
 $ npm install
 $ node app.js
 ```
+# Screenshots
 
+* Registeration Page
+<img alt="GIF" src="https://github.com/shaheryarshaikh1011/hms/blob/master/screenshots/registeration.png" width="400" height="256" />
+
+* Login Page
+<img alt="GIF" src="https://github.com/shaheryarshaikh1011/hms/blob/master/screenshots/login.png" width="400" height="256" />
 
 
 # Author
