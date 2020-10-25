@@ -5,7 +5,7 @@
   </a>
 </p>
 
-### 🏠 [Homepage](https://github.com/shaheryarshaikh1011/hms)
+### 🏠 [Homepage](https://hmsofficial.herokuapp.com/)
 
 # Project Title
 * This is a Hospital Management System WebApp made by Nodejs with separate Panel for Admin and Separate Panel for receptionist(user).
