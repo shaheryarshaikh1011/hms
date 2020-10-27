@@ -88,5 +88,10 @@ body {
 
 
 .labels{
-	color: white
+	color: white;
+	font-weight: bold;
+	padding-left: 3%;
+	display: block; 
+	float: left;
 }
+
