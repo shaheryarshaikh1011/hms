@@ -15,20 +15,20 @@
         <div class="col-12 form-input">
          		<form action="/editAppointment/<%=appointment._id%>?_method=PUT" method="POST">
 			<div class="form-group">
-				<label>Enter Patient's Fullname</label>
+				<label class="labels">Enter Patient's Fullname</label>
 				<input class="form-control" type="text" value="<%=appointment.pname%>"" name="appointment[pname]" size="20" required>
 			</div>
 			<div class="form-group">
-				<label>Enter Reason</label>
+				<label class="labels">Enter Reason</label>
 				<input class="form-control" type="text" value="<%=appointment.areason%>" name="appointment[areason]" size="100" required>
 			</div>
 			<div class="form-group">
-				<label>Select Date and Time</label>
+				<label class="labels">Select Date and Time</label>
 				<input class="form-control text-center" value="<%=appointment.ddate%>" type="datetime-local" name="appointment[ddate]" required>
 			</div>
 
 			<div class="form-group">
-				<label for="name">select Doctor</label>
+				<label for="name" class="labels">select Doctor</label>
 				<select class="form-control" name="appointment[dname]" id="name">
 					<%doctor.forEach(function(doctor){%>
   						<option value="<%=doctor.dname%>"><%=doctor.dname%></option>

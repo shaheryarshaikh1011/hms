@@ -11,10 +11,10 @@
         <div class="col-12 form-input">
          <form action="/login" method="POST">
             <div class="form-group">
-              <input type="text" name="username" class="form-control" placeholder="Enter Username" required>
+              <input type="text" name="username" class="form-control" placeholder="Enter Username" oninvalid="this.setCustomValidity('Please Enter Username')" onchange="try{setCustomValidity('')}catch(e){}" required >
             </div>
             <div class="form-group">
-              <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+              <input type="password" name="password" class="form-control" placeholder="Enter Password" oninvalid="this.setCustomValidity('Please Enter Password')" onchange="try{setCustomValidity('')}catch(e){}"required >
             </div>
             <button type="submit" class="btn btn-success">Login</button>
             <div class="aredirect">
