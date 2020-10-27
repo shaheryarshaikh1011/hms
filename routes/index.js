@@ -3,6 +3,7 @@ var express=require("express");
 var router= express.Router();
 var passport=require("passport");
 
+
 //require models
  var User        =require("../models/user"),
      Doctor      =require("../models/doctor"),
@@ -104,12 +105,17 @@ router.get("/login",function(req,res) {
 router.post("/login",passport.authenticate("local",
 	{
 		successRedirect:"/panel",
-	 	failureRedirect:"/login"
+	 	failureRedirect:"/login",
+	 	failureFlash: true
 	 }),function(req,res) {
 	 
 
 	
 });
+
+
+
+
 
 
 //logout route

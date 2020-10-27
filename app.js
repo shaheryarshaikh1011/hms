@@ -76,8 +76,11 @@ passport.deserializeUser(User.deserializeUser());
 
 //using passport local for getting currentuser details
 app.use(function(req,res,next) {
+	//save user info
 	res.locals.currentUser=req.user;
+	//save error info
 	res.locals.error=req.flash("error");
+	//save success info
 	res.locals.success=req.flash("success");
 	next();
 });
@@ -87,10 +90,20 @@ const port = process.env.PORT_NO;
 const host = process.env.HOSTNAME;
 
 //requiring routes
+
+//login,panel and registeration routes
 app.use(indexRoutes);
+
+//add update delete doctor routes
 app.use(docRoutes);
+
+//add update delete patient routes
 app.use(patRoutes);
+
+//add update delete appoinment routes
 app.use(appointRoutes);
+
+//if route is invalid redirect to panel
 app.get('*', function (req, res) { 
     res.redirect("/panel"); 
 }) 

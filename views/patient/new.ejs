@@ -6,59 +6,53 @@
     <h1>Add new Patient</h1>
       <div class="modal-content">
           <div class="col-12">
-          <h1></h1>
-        </div>
+          	<h1></h1>
+          </div>
+          <div class="col-12 form-input">
+          	<form action="addPatient" method="POST" name="add">
 
-        <div class="col-12 form-input">
-         <form action="addPatient" method="POST">
-			<div class="form-group">
+				<div class="form-group">
+					<input class="form-control" type="text" placeholder="enter name" name="pname" required>
+				</div>
+
+				<div class="form-group">
+					<input class="form-control" type="number" placeholder="enter Age" name="page" step="1" min=0 oninput="validity.valid||(value='');" required>
+				</div>
+
+				<div class="form-group">
 				
-				<input class="form-control" type="text" placeholder="enter name" name="pname" required>
-			</div>
-			<div class="form-group">
-				
-				<input class="form-control" type="number" placeholder="enter Age" name="page" step="1" min=0 oninput="validity.valid||(value='');" required>
-			</div>
-			<div class="form-group">
-				
-				<select class="form-control" name="pgender" id="pgender">
+					<select class="form-control" name="pgender" id="pgender">
 					
   						<option value="M">Male</option>
   						<option value="F">Female</option>
   					
-				</select>
-			</div>
-			<div class="form-group">
+					</select>
+				</div>
+
+				<div class="form-group">
 				
-				<input class="form-control" type="email" placeholder="enter Email" name="email" required>
-			</div>
+					<input class="form-control" type="email" placeholder="enter Email" name="email" oninput="ValidateEmail()" required>
+				</div>
 			
-			<div class="form-group">
-				
-				<input class="form-control" type="text" placeholder="enter Address" name="paddr" required>
-			</div>
-			
-				
-				
-	
-	
-		
-            <button type="submit" class="btn btn-success">submit</button>
-            <div class="goback">
-            <a class="btn btn-warning btn-lg" href="/getPatient">Go back!</a>
-            </div>
-          </form>
+				<div class="form-group">
+					<input class="form-control" type="text" placeholder="enter Address" name="paddr" required>
+				</div>
+
+            	<button type="submit" class="btn btn-success">submit</button>
+
+            	<div class="goback">
+            		<a class="btn btn-warning btn-lg" href="/getPatient">Go back!</a>
+          		</div>
+          	</form>
 
 
-        </div>
+         </div>
 
    
 
       </div>
     </div>
 </div>
-
-
 
 
 
