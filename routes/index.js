@@ -36,18 +36,18 @@ router.get("/panel",middleware.isLoggedIn,function(req,res) {
     else
     { 
         DocCount=count;
-        console.log("no of dr "+DocCount);
+        
         Patient.countDocuments(function (err, Patcount) { 
     	if (err){ 
         			console.log(err) 
     			}
     		else{ 
         			PatCount=Patcount;
-        			console.log("no of pat "+PatCount);
+        			
         			Doctor.find({}).distinct('dname', function(err, obj) {
     						//do something with room_types
     						DocName=obj;
-    						console.log(DocName);
+    						
     						res.render("panel",{user:req.user.username,DocCount:DocCount,PatCount:PatCount,DocName:DocName});
 						});
         			

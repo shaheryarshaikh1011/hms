@@ -12,11 +12,11 @@
           	<form action="addPatient" method="POST" name="add">
 
 				<div class="form-group">
-					<input class="form-control" type="text" placeholder="enter name" name="pname" required>
+					<input class="form-control" type="text" placeholder="enter name" name="pname" oninvalid="this.setCustomValidity('Please Enter Patients Name')" onchange="this.setCustomValidity('')">
 				</div>
 
 				<div class="form-group">
-					<input class="form-control" type="number" placeholder="enter Age" name="page" step="1" min=0 oninput="validity.valid||(value='');" required>
+					<input class="form-control" type="number" placeholder="enter Age" name="page" step="1" min=1  max="100" oninput="this.value<=0" required>
 				</div>
 
 				<div class="form-group">
@@ -31,11 +31,12 @@
 
 				<div class="form-group">
 				
-					<input class="form-control" type="email" placeholder="enter Email" name="email" required>
+					<input class="form-control" type="email" placeholder="enter Email" name="email" oninvalid="this.setCustomValidity('Please Enter Patients Email id')" onchange="this.setCustomValidity('')" required>
 				</div>
 			
 				<div class="form-group">
-					<input class="form-control" type="text" placeholder="enter Address" name="paddr" required>
+					<input class="form-control" type="text" placeholder="enter Address" name="paddr"
+					oninvalid="this.setCustomValidity('Please Enter Patients Address')" onchange="this.setCustomValidity('')" required>
 				</div>
 
             	<button type="submit" class="btn btn-success">submit</button>

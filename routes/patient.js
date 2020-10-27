@@ -47,7 +47,9 @@ router.post("/addPatient",middleware.isLoggedIn,middleware.isItUser,function(req
 	Patient.create(newPatient,function(err,newlyAddedPat) {
 		if(err)
 		{
-			console.log(err);
+			
+			req.flash("error","Patient details already exist");
+			res.redirect("/addPatient");
 		}
 		else
 		{	

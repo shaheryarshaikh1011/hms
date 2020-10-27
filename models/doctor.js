@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 
 var DoctorSchema=mongoose.Schema({
-	dname:String,
+	dname:{type:String,unique:true},
 	dage:Number,
 	specialization:String
 });

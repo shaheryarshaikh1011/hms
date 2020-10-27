@@ -1,8 +1,8 @@
 var mongoose = require("mongoose");
 
 var PatientSchema=mongoose.Schema({
-	pname:String,
-	page:Number,
+	pname:{type:String,unique:true},
+	page:{type:Number},
 	pemail:String,
 	pgender:String,
 	paddr:String

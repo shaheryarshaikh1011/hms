@@ -47,7 +47,8 @@ router.post("/addDoctor",middleware.isLoggedIn,middleware.isItAdmin,function(req
 		//if some error
 		if(err)
 		{
-			console.log(err);
+			req.flash("error","doctor already exists");
+			res.redirect("/addDoctor");
 		}
 		else
 		{	//redirect to getDoctor route
@@ -79,6 +80,7 @@ router.put("/editDoctor/:id",middleware.isLoggedIn,middleware.isItAdmin,function
 		{
 				console.log(err);
 				req.flash("error",err);
+				res.redirect("/editDoctor/:id");
 
 		}
 		else
@@ -109,3 +111,8 @@ router.delete("/deleteDoctor/:id",middleware.isLoggedIn,middleware.isItAdmin,fun
 
 
 module.exports=router;
+
+
+
+
+
