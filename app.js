@@ -44,7 +44,6 @@ mongoose.connect(process.env.CloudDB,function(err) {
 	{
 		console.log("we are connected to "+process.env.CloudDB);
 	}
-	// body...
 });
 
 app.use(flash());
@@ -58,7 +57,7 @@ app.set("view engine","ejs");
 
 
 
-//Session Configuration
+//Session Configurationaq
 var secret=process.env.SECRET_KEY;
 app.use(require("express-session")({
 	secret:secret,
@@ -71,6 +70,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 //local strategy
 passport.use(new LocalStrategy(User.authenticate()));
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -86,7 +86,7 @@ app.use(function(req,res,next) {
 });
 
 //stating host and port no
-const port = process.env.PORT_NO;
+
 const host = process.env.HOSTNAME;
 
 //requiring routes
@@ -115,10 +115,7 @@ app.get('*', function (req, res) {
 
 
 
-//server listen
-app.listen(port,host,function() {
-	// body...
-	console.log("Listening to port "+port);
-	console.log(host+ " has Started");
 
-});
+const port = process.env.PORT_NO || 3000;
+
+app.listen(port, () => console.log(`Server running on ${port}, http://localhost:${port}`));
