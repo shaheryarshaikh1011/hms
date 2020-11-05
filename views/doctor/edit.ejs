@@ -12,7 +12,7 @@
 			<div class="form-group">
 				<label class="labels">Enter Doctor's Name</label>
 				<input class="form-control" type="text" value="<%=doctor.dname%>" name="doctor[dname]"
-        oninvalid="this.setCustomValidity('Please Enter Doctors Name')" onchange="this.setCustomValidity('')">
+        oninvalid="this.setCustomValidity('Please Enter Doctors Name')" onchange="this.setCustomValidity('')" pattern='[a-zA-Z][a-zA-Z ]+[a-zA-Z]$' required>
 			</div>
 			<div class="form-group">
 				<label class="labels">Enter Doctor's Age</label>
@@ -20,7 +20,7 @@
 			</div>
 			<div class="form-group">
 				<label class="labels">Enter Doctor's Department</label>
-				<input class="form-control" type="text" value="<%=doctor.specialization%>" name="doctor[specialization]" required>
+				<input class="form-control" type="text" value="<%=doctor.specialization%>" name="doctor[specialization]" pattern='[a-zA-Z][a-zA-Z ]+[a-zA-Z]$' required>
 			</div>
 			<button type="submit" class="btn btn-success">submit</button>
             <div class="goback">

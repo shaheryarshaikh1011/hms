@@ -16,11 +16,11 @@
          		<form action="addAppointment" method="POST">
 			<div class="form-group">
 				
-				<input class="form-control" type="text" placeholder="enter name" name="pname" required>
+				<input class="form-control" type="text" placeholder="enter name" name="pname" pattern='[a-zA-Z][a-zA-Z ]+[a-zA-Z]$' required>
 			</div>
 			<div class="form-group">
 				
-				<input class="form-control" type="text" placeholder="enter Reason" name="reason" required>
+				<input class="form-control" type="text" placeholder="enter Reason" name="reason" pattern='[a-zA-Z][a-zA-Z ]+[a-zA-Z]$' required>
 			</div>
 			<div class="form-group">
 				
@@ -30,7 +30,7 @@
 			
 
 			<div class="form-group">
-				<label for="name">select Doctor</label>
+				<label for="name" class="labels">select Doctor</label>
 				<select class="form-control" name="dname" id="name">
 					<%doctor.forEach(function(doctor){%>
   						<option value="<%=doctor.dname%>"><%=doctor.dname%></option>
