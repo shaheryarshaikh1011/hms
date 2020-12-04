@@ -59,6 +59,7 @@
 * Now you can create multiple Users
 * Reponsive UI supports Mobile Phone Resolutions
 * chart On panel Page shows Doctor/Patient Ratio
+* Login For Admin.   admin:admin
 
 # Install
 
