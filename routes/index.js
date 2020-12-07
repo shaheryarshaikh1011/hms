@@ -102,8 +102,13 @@ router.post("/register",function(req,res)
 //show login form
 router.get("/login",function(req,res) 
 {
-
-	res.render("login");
+	if(req.isAuthenticated()){
+		res.redirect("/panel");
+	}
+	else
+	{
+		res.render("login");
+	}
 });
 
 //register post route
