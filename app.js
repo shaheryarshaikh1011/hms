@@ -24,8 +24,6 @@ var indexRoutes		=require("./routes/index"),
 //required to use env file
 require('dotenv').config();
 
-
-
 //using public directory for stylesheets
 app.use(express.static(__dirname + "/public"));
 //use method override for put and delete routes
@@ -46,16 +44,14 @@ mongoose.connect(process.env.CloudDB,function(err) {
 	}
 });
 
+//use flash
 app.use(flash());
-
 
 //use body parser to get value from ejs forms
 app.use(bodyParser.urlencoded({extended:true}));
 
 //set ejs as view engine
 app.set("view engine","ejs");
-
-
 
 //Session Configurationaq
 var secret=process.env.SECRET_KEY;
@@ -68,9 +64,9 @@ app.use(require("express-session")({
 //Passport configuration
 app.use(passport.initialize());
 app.use(passport.session());
+
 //local strategy
 passport.use(new LocalStrategy(User.authenticate()));
-
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -86,35 +82,23 @@ app.use(function(req,res,next) {
 });
 
 //stating host and port no
-
 const host = process.env.HOSTNAME;
 
 //requiring routes
 
 //login,panel and registeration routes
 app.use(indexRoutes);
-
-//add update delete doctor routes
+//view,add,update,delete doctor routes
 app.use(docRoutes);
-
-//add update delete patient routes
+//view,add,update,delete patient routes
 app.use(patRoutes);
-
-//add update delete appoinment routes
+//view,add,update,delete appoinment routes
 app.use(appointRoutes);
 
 //if route is invalid redirect to panel
 app.get('*', function (req, res) { 
     res.redirect("/panel"); 
 }) 
-
-
-
-
-
-
-
-
 
 const port = process.env.PORT_NO || 3000;
 
